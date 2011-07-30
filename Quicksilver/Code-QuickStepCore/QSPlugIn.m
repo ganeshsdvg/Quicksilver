@@ -43,7 +43,7 @@ NSMutableDictionary *plugInBundlePaths = nil;
 
 - (id)initWithWebInfo:(NSDictionary *)webInfo {
 	if (self = [super init]) {
-		data = [webInfo retain];
+		data = [webInfo mutableCopy];
 		bundle = nil;
 	}
 	return self;
@@ -692,24 +692,26 @@ NSMutableDictionary *plugInBundlePaths = nil;
 	[state writeToFile:pStateLocation atomically:NO];
 	
 	//NSLog(@"%s", __PRETTY_FUNCTION__) ;
-	NS_DURING
+	@try {
 		[self _registerPlugIn];
-	NS_HANDLER
-		NSString *errorMessage = [NSString stringWithFormat:@"An error ocurred while loading plug-in \"%@\": %@", self, localException];
+	}
+	@catch (NSException *e) {
 #ifdef DEBUG
 		if (VERBOSE) {
+		  NSString *errorMessage = [NSString stringWithFormat:@"An error ocurred while loading plug-in \"%@\": %@", self, e];
 			NSLog(@"%@", errorMessage);
-			[localException printStackTrace];
+			[e printStackTrace];
 		}
 #endif
-		[self setLoadError:[localException reason]];
-	NS_ENDHANDLER
-	
-	[state removeObjectForKey:kQSPluginCausedCrashAtLaunch];
-	[state removeObjectForKey:kQSFaultyPluginPath];
-	[state writeToFile:pStateLocation atomically:NO];
-	[state release];
-	
+		[self setLoadError:[e reason]];
+	}
+	@finally {
+		[state removeObjectForKey:kQSPluginCausedCrashAtLaunch];
+		[state removeObjectForKey:kQSFaultyPluginPath];
+		[state writeToFile:pStateLocation atomically:NO];
+		[state release];
+	}
+
 	return YES;
 }
 
