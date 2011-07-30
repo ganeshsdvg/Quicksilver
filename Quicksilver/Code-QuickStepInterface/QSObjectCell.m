@@ -452,14 +452,14 @@ NSRect alignRectInRect(NSRect innerRect, NSRect outerRect, int quadrant);
 		[self setDetailsFont:[NSFont fontWithName:[[self font] fontName] size:[[self font] pointSize] *5/6]];
 	}
 	
-	[nameAttributes release];
+  [nameAttributes autorelease];
 	nameAttributes = [[NSDictionary alloc] initWithObjectsAndKeys:
 		nameFont, NSFontAttributeName,
 		mainColor, NSForegroundColorAttributeName,
 		style, NSParagraphStyleAttributeName,
 		nil];
 
-	[detailsAttributes release];
+  [detailsAttributes autorelease];
 	detailsAttributes = [[NSDictionary alloc] initWithObjectsAndKeys:
 		detailsFont, NSFontAttributeName,
 		fadedColor, NSForegroundColorAttributeName,
@@ -484,9 +484,10 @@ NSRect alignRectInRect(NSRect innerRect, NSRect outerRect, int quadrant);
 
 		//NSLog(@"usingname: %@", nameString);
 		NSString *detailsString = [drawObject details];
-		NSSize nameSize = [nameString sizeWithAttributes:nameAttributes];
+    NSSize nameSize = NSZeroSize;
+    if (nameString && nameAttributes) nameSize = [nameString sizeWithAttributes:nameAttributes];
 		NSSize detailsSize = NSZeroSize;
-		if (detailsString) detailsSize = [detailsString sizeWithAttributes:detailsAttributes];
+		if (detailsString && detailsAttributes) detailsSize = [detailsString sizeWithAttributes:detailsAttributes];
         
 		BOOL useAlternateColor = [controlView isKindOfClass:[NSTableView class]] && [(NSTableView *)controlView isRowSelected:[(NSTableView *)controlView rowAtPoint:cellFrame.origin]];
 		NSColor *mainColor = (textColor?textColor:(useAlternateColor?[NSColor alternateSelectedControlTextColor] :[NSColor controlTextColor]) );
@@ -705,9 +706,10 @@ NSRect alignRectInRect(NSRect innerRect, NSRect outerRect, int quadrant);
 }
 
 - (void)setNameFont:(NSFont *)newNameFont {
-    [nameFont autorelease];
-    nameFont = [newNameFont retain];
-    [[self controlView] setNeedsDisplay:YES];
+  [nameFont autorelease];
+  nameFont = [newNameFont retain];
+  
+  [[self controlView] setNeedsDisplay:YES];
 }
 
 - (NSFont *)detailsFont {
@@ -715,9 +717,10 @@ NSRect alignRectInRect(NSRect innerRect, NSRect outerRect, int quadrant);
 }
 
 - (void)setDetailsFont:(NSFont *)newDetailsFont {
-    [detailsFont autorelease];
-    detailsFont = [newDetailsFont retain];
-    [[self controlView] setNeedsDisplay:YES];
+  [detailsFont autorelease];
+  detailsFont = [newDetailsFont retain];
+  
+  [[self controlView] setNeedsDisplay:YES];
 }
 
 - (float)cellRadiusFactor {
