@@ -48,7 +48,7 @@ typedef enum {
 #define kLastUsedLocation @"Last Used Location"
 
 @interface NSApplication (LaunchStatus)
-- (int) checkLaunchStatus;
+- (NSInteger) checkLaunchStatus;
 - (void)updateLaunchStatusInfo;
 @end
 

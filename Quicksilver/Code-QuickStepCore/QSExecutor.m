@@ -41,7 +41,7 @@ QSExecutor *QSExec = nil;
 @end
 
 @interface QSAction (QSPrivate)
-- (void)_setRank:(int)newRank;
+- (void)_setRank:(NSInteger)newRank;
 @end
 
 @implementation QSExecutor
@@ -188,11 +188,11 @@ QSExecutor *QSExec = nil;
         activation = [action defaultEnabled];
 	[action setMenuEnabled:activation];    
 
-	int index = [actionRanking indexOfObject:ident];
+	NSInteger index = [actionRanking indexOfObject:ident];
 
 	if (index == NSNotFound) {
 		float prec = [action precedence];
-		int i;
+		NSInteger i;
 		float otherPrec;
 		for(i = 0; i < [actionRanking count]; i++) {
 			otherPrec = [[actionPrecedence valueForKey:[actionRanking objectAtIndex:i]] floatValue];
@@ -202,7 +202,7 @@ QSExecutor *QSExec = nil;
 		[actionPrecedence setObject:[NSNumber numberWithFloat:prec] forKey:ident];
 		[action setRank:i];
 #ifdef DEBUG
-		if (VERBOSE) NSLog(@"inserting action %@ at %d (%f) ", action, i, prec);
+		if (VERBOSE) NSLog(@"inserting action %@ at %ld (%f) ", action, i, prec);
 #endif
 	} else {
 		[action _setRank:index];
@@ -224,7 +224,7 @@ QSExecutor *QSExec = nil;
 }
 
 - (void)updateRanks {
-	int i;
+	NSInteger i;
 	for(i = 0; i<[actionRanking count]; i++) {
 		[[actionIdentifiers objectForKey:[actionRanking objectAtIndex:i]] _setRank:i];
 	}
@@ -437,9 +437,9 @@ QSExecutor *QSExec = nil;
 }
 
 - (void)orderActions:(NSArray *)actions aboveActions:(NSArray *)lowerActions {
-	int index = [[lowerActions valueForKeyPath:@"@min.rank"] intValue];
+	NSInteger index = [[lowerActions valueForKeyPath:@"@min.rank"] integerValue];
 #ifdef DEBUG
-	if (VERBOSE) NSLog(@"Promote to %d", index);
+	if (VERBOSE) NSLog(@"Promote to %ld", index);
 #endif
 	NSString *targetIdentifier = [actionRanking objectAtIndex:index];
 	NSArray *identifiers = [actions valueForKey:@"identifier"];
@@ -449,7 +449,7 @@ QSExecutor *QSExec = nil;
 	[self updateRanks];
 }
 - (void)orderActions:(NSArray *)actions belowActions:(NSArray *)higherActions {
-	int index = [[higherActions valueForKeyPath:@"@max.rank"] intValue];
+	NSInteger index = [[higherActions valueForKeyPath:@"@max.rank"] integerValue];
 	//NSLog(@"demote to %d", index);
 	NSString *targetIdentifier = [actionRanking objectAtIndex:index];
 	NSArray *identifiers = [actions valueForKey:@"identifier"];

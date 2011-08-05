@@ -92,7 +92,7 @@ BOOL QSApplicationCompletedLaunch = NO;
 				return;
 		}
 	}
-	switch ((int) [theEvent type]) {
+	switch ((NSInteger) [theEvent type]) {
 		case NSProcessNotificationEvent:
 			[[QSProcessMonitor sharedInstance] handleProcessEvent:theEvent];
 			break;
@@ -179,7 +179,7 @@ BOOL QSApplicationCompletedLaunch = NO;
 }
 
 - (BOOL)isPrerelease {
-	int releaseLevel = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"QSReleaseStatus"] intValue];
+	NSInteger releaseLevel = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"QSReleaseStatus"] integerValue];
 	return releaseLevel > 0;
 }
 

@@ -48,7 +48,6 @@ OSStatus appChanged(EventHandlerCallRef nextHandler, EventRef theEvent, void *us
 //	OSErr resultCode = noErr;
 	ProcessSerialNumber serialNumber;
 	ProcessInfoRec			 procInfo;
-	FSSpec			 appFSSpec;
 
 	Str255							 procName;
 	serialNumber.highLongOfPSN = kNoProcess;
@@ -56,8 +55,6 @@ OSStatus appChanged(EventHandlerCallRef nextHandler, EventRef theEvent, void *us
 
 	procInfo.processInfoLength			 = sizeof(ProcessInfoRec);
 	procInfo.processName					 = procName;
-	procInfo.processAppSpec			 = &appFSSpec;
-//	procInfo.processAppSpec			 = &appFSSpec;
 
 	while (procNotFound != (/*resultCode = */GetNextProcess(&serialNumber) )) {
 		if (noErr == (/*resultCode = */GetProcessInformation(&serialNumber, &procInfo) )) {
@@ -78,7 +75,7 @@ OSStatus appChanged(EventHandlerCallRef nextHandler, EventRef theEvent, void *us
 	EventHandlerUPP handlerFunction = NewEventHandlerUPP(appChanged);
 	OSStatus err = InstallApplicationEventHandler(handlerFunction, 1, &eventType, self, &eventHandler);
 	if (err)
-        NSLog(@"gmod registration err %ld", err);
+        NSLog(@"gmod registration err %d", err);
 }
 
 - (id)init {
@@ -96,7 +93,7 @@ OSStatus appChanged(EventHandlerCallRef nextHandler, EventRef theEvent, void *us
 - (void)dealloc {
     OSStatus err = RemoveEventHandler(eventHandler);
     if(err)
-        NSLog(@"error %ld removing handler", err);
+        NSLog(@"error %d removing handler", err);
 	[self setCurrentApplication:nil];
 	[self setPreviousApplication:nil];
 	[super dealloc];

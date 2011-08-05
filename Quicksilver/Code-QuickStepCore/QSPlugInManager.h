@@ -40,7 +40,7 @@
 	float installProgress;
 	BOOL isInstalling;
 	BOOL supressRelaunchMessage;
-    int errorCount;
+    NSInteger errorCount;
     NSTimeInterval lastCheck;
 }
 

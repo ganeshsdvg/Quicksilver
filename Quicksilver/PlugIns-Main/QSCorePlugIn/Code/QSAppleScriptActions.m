@@ -120,7 +120,7 @@
 
 		NSAppleEventDescriptor* event;
 		NSDictionary *errorInfo = nil;
-		int pid = [[NSProcessInfo processInfo] processIdentifier];
+		NSInteger pid = [[NSProcessInfo processInfo] processIdentifier];
 		NSAppleEventDescriptor* targetAddress = [[NSAppleEventDescriptor alloc] initWithDescriptorType:typeKernelProcessID bytes:&pid length:sizeof(pid)];
 		if (files) {
 			event = [[NSAppleEventDescriptor alloc] initWithEventClass:kCoreEventClass eventID:kAEOpenDocuments targetDescriptor:targetAddress returnID:kAutoGenerateReturnID transactionID:kAnyTransactionID];
@@ -171,7 +171,7 @@
 		scriptPath = [[action bundle] pathForResource:[scriptPath stringByDeletingPathExtension] ofType:[scriptPath pathExtension]];
 
 	NSAppleEventDescriptor *event;
-	int pid = [[NSProcessInfo processInfo] processIdentifier];
+	NSInteger pid = [[NSProcessInfo processInfo] processIdentifier];
 	NSAppleEventDescriptor* targetAddress = [[NSAppleEventDescriptor alloc] initWithDescriptorType:typeKernelProcessID bytes:&pid length:sizeof(pid)];
 
 	NSDictionary *errorDict = nil;
@@ -242,8 +242,8 @@
 	return ([action isEqualToString:kAppleScriptOpenTextAction] ? [NSArray arrayWithObject:[QSObject textProxyObjectWithDefaultValue:@""]] : nil);
 }
 
-- (int)argumentCountForAction:(NSString *)actionId {
-    int argumentCount = 1;
+- (NSInteger)argumentCountForAction:(NSString *)actionId {
+    NSInteger argumentCount = 1;
     QSAction *action = [QSAction actionWithIdentifier:actionId];
 	NSString *scriptPath = [action objectForKey:kActionScript];
     
@@ -263,7 +263,7 @@
     NSArray *handlers = [NSAppleScript validHandlersFromArray:[NSArray arrayWithObject:@"DAEDgarc"] inScriptFile:scriptPath];
     if( handlers != nil && [handlers count] != 0 ) {
         NSAppleEventDescriptor *event;
-        int pid = [[NSProcessInfo processInfo] processIdentifier];
+        NSInteger pid = [[NSProcessInfo processInfo] processIdentifier];
         NSAppleEventDescriptor* targetAddress = [[NSAppleEventDescriptor alloc] initWithDescriptorType:typeKernelProcessID bytes:&pid length:sizeof(pid)];
         
         NSDictionary *errorDict = nil;
@@ -284,7 +284,7 @@
     }
 
 #ifdef DEBUG
-	NSLog(@"argument count for %@ is %d", actionId, argumentCount);
+	NSLog(@"argument count for %@ is %ld", actionId, argumentCount);
 #endif
     
     return argumentCount;

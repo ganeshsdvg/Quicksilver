@@ -311,7 +311,7 @@ struct HotKeyMappingEntry
 		{
 			keyCode = [[aDecoder decodeObjectForKey:kArchivingKeyCodeKey] unsignedShortValue];
 			character = [[aDecoder decodeObjectForKey:kArchivingCharacterKey] unsignedShortValue];
-			modifierFlags = [[aDecoder decodeObjectForKey:kArchivingModifierFlagsKey] unsignedIntValue];
+			modifierFlags = [[aDecoder decodeObjectForKey:kArchivingModifierFlagsKey] unsignedIntegerValue];
 			
 			selectorReleased = NSSelectorFromString( [aDecoder decodeObjectForKey:kArchivingSelectorReleasedCodeKey] );
 			selectorPressed = NSSelectorFromString( [aDecoder decodeObjectForKey:kArchivingSelectorPressedCodeKey] );
@@ -374,7 +374,7 @@ struct HotKeyMappingEntry
 //		theKeyPressedSelector = NSSelectorFromString([aPropertyList objectForKey:kArchivingSelectorPressedCodeKey]);
 //		theKeyReleasedSelector = NSSelectorFromString([aPropertyList objectForKey:kArchivingSelectorReleasedCodeKey]);
 
-		self = [self initWithKeyCode:[theKeyCode unsignedShortValue] character:[theCharacter characterAtIndex:0] modifierFlags:[theModiferFlag unsignedIntValue]];
+		self = [self initWithKeyCode:[theKeyCode unsignedShortValue] character:[theCharacter characterAtIndex:0] modifierFlags:[theModiferFlag unsignedIntegerValue]];
 	}
 	else
 	{
@@ -435,7 +435,7 @@ struct HotKeyMappingEntry
     if(reference) {
         OSStatus err = UnregisterEventHotKey( reference );
         if( err != noErr )	// in lock from release
-            NSLog( @"Failed to unregister hot key %@ with error %ld", self, err );
+            NSLog( @"Failed to unregister hot key %@ with error %d", self, err );
     }
 	[super dealloc];
 }
@@ -972,7 +972,7 @@ UInt32 normalizeKeyCode(UInt32 theChar, unsigned short aKeyCode) {
 			UInt32 keyboardType = LMGetKbdType();
 			UInt32 deadKeyState = 0;
 			UniChar s[8];
-			UInt32 len;
+			UniCharCount len;
 			
 			OSStatus err = UCKeyTranslate((UCKeyboardLayout *) theKeyboardLayoutData,
 										  aKeyCode, kUCKeyActionDown, 0,
