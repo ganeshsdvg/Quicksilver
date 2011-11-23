@@ -151,14 +151,20 @@ BOOL QSApplicationCompletedLaunch = NO;
 	[defaults setBool:hidden forKey:kHideDockIcon];
 	[defaults synchronize];
 	BOOL res = [super setShouldBeUIElement:hidden];
-	if (res && !hidden) {
-		ProcessSerialNumber psn = { 0, kCurrentProcess } ;
-		TransformProcessType(&psn, kProcessTransformToForegroundApplication);
-		OSStatus err = noErr;
-		if ((err = TransformProcessType(&psn, kProcessTransformToForegroundApplication)) != noErr) {
-			NSLog(@"TransformProcessType failed: %ld", err);
+	if (res) {
+		ProcessSerialNumber psn = {0, kCurrentProcess};
+		/*
+		 * 1 => Foreground (kProcessTransformToForegroundApplication)
+		 * 2 => Background Only (undocumented)
+		 * 4 => UI Element (undocumented)
+		 */
+		ProcessApplicationTransformState state = (!hidden ? kProcessTransformToForegroundApplication : 4);
+		OSStatus err = TransformProcessType(&psn, state);
+		if (!err) {
+			isUIElement = hidden;
+		} else {
+			NSLog(@"TransformProcessType in state: %ld failed: %ld", state, err);
 		}
-		isUIElement = (err == noErr);
 	}
 	return res;
 }
