@@ -47,24 +47,25 @@ BOOL QSApplicationCompletedLaunch = NO;
 
 - (id)init {
 	if ((self = [super init])) {
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
-	// Honor dock hidden preference if new version
-	isUIElement = [self shouldBeUIElement];
-	if (!isUIElement && [defaults boolForKey:kHideDockIcon]) {
-		if (![defaults objectForKey:@"QSShowMenuIcon"])
-			[defaults setInteger:1 forKey:@"QSShowMenuIcon"];
+		isUIElement = [self shouldBeUIElement];
 
-	  NSLog(@"Relaunching to honor Dock Icon Preference");
-		if ([self setShouldBeUIElement:YES]) {
+		/* Honor dock hidden preference if new version */
+		if (!isUIElement && [defaults boolForKey:kHideDockIcon]) {
+			/* Force menu to be shown so that user can keep access to preferences, only if not already set */
+			if (![defaults objectForKey:@"QSShowMenuIcon"])
+				[defaults setInteger:1 forKey:@"QSShowMenuIcon"];
+
+			NSLog(@"Relaunching to honor Dock Icon Preference");
+			if ([self setShouldBeUIElement:YES]) {
 #ifndef DEBUG
-			[self relaunch:nil];
+				[self relaunch:nil];
 #endif
-		} else {
-			[defaults setBool:NO forKey:kHideDockIcon];
+			} else {
+				[defaults setBool:NO forKey:kHideDockIcon];
+			}
 		}
-	}
 	}
 	return self;
 }
@@ -149,11 +150,17 @@ BOOL QSApplicationCompletedLaunch = NO;
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setBool:hidden forKey:kHideDockIcon];
 	[defaults synchronize];
-	if (!hidden) {
+	BOOL res = [super setShouldBeUIElement:hidden];
+	if (res && !hidden) {
 		ProcessSerialNumber psn = { 0, kCurrentProcess } ;
 		TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+		OSStatus err = noErr;
+		if ((err = TransformProcessType(&psn, kProcessTransformToForegroundApplication)) != noErr) {
+			NSLog(@"TransformProcessType failed: %ld", err);
+		}
+		isUIElement = (err == noErr);
 	}
-	return [super setShouldBeUIElement:hidden];
+	return res;
 }
 
 - (NSResponder *)globalKeyEquivalentTarget { return globalKeyEquivalentTarget;  }

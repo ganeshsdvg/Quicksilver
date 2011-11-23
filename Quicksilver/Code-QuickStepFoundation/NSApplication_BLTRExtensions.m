@@ -127,7 +127,6 @@
 
 @end
 
-#warning update these to the new NSApplicationPresentationOptions API. 
 @implementation NSApplication (LSUIElementManipulation)
 
 - (BOOL)shouldBeUIElement {
@@ -137,6 +136,7 @@
 - (BOOL)setShouldBeUIElement:(BOOL)hidden {
 	NSString * plistPath = nil;
 	NSFileManager *manager = [NSFileManager defaultManager];
+	/* Rewrite our Info.plist file with LSUIElement set to the correct value */
 	if (plistPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Contents/Info.plist"]) {
 		if ([manager isWritableFileAtPath:plistPath]) {
 			NSMutableDictionary *infoDict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
