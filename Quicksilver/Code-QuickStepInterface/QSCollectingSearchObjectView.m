@@ -12,17 +12,24 @@
 @implementation QSCollectingSearchObjectView
 - (void)awakeFromNib {
 	[super awakeFromNib];
-	collection = (NSMutableArray *)[[QSCollection alloc] init];
+	collection = [[QSCollection alloc] init];
 	collecting = NO;
 	collectionEdge = NSMinYEdge;
 	collectionSpace = 16.0;
 }
+
+- (void)dealloc {
+	[collection release];
+	[super dealloc];
+}
+
 - (NSSize) cellSize {
 	NSSize size = [super cellSize];
 	if (collectionSpace < 0.0001)
 		size.width += [collection count]*16;
 	return size;
 }
+
 - (void)drawRect:(NSRect)rect {
 	NSRect frame = [self frame];
 	NSInteger count = [collection count];
@@ -91,7 +98,8 @@
 }
 - (id)objectValue {
 	if ([collection count])
-		return [QSObject objectByMergingObjects:(NSArray *)collection withObject:[super objectValue]];
+		return collection;
+        //[QSObject objectByMergingObjects:(NSArray *)collection withObject:[super objectValue]];
 	else
 		return [super objectValue];
 }
@@ -139,9 +147,5 @@
 }
 - (void)setCollectionSpace:(CGFloat)value {
 	collectionSpace = value;
-}
-- (void)dealloc {
-	[collection release];
-	[super dealloc];
 }
 @end

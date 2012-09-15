@@ -13,7 +13,7 @@
 @class QSCollection;
 
 @interface QSCollectingSearchObjectView : QSSearchObjectView {
-	NSMutableArray *collection;
+	QSCollection *  collection;
 	BOOL 			collecting;
 	NSRectEdge		collectionEdge;
 	CGFloat			collectionSpace;

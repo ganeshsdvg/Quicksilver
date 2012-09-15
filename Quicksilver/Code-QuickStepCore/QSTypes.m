@@ -29,3 +29,4 @@ NSString *QSPasteboardDataType = @"qs.pasteboard-data";
 NSString *QSCommandType = @"qs.command";
 NSString *QSHandledType = @"qs.handled";
 NSString *QSRemoteHostsType = @"QSRemoteHostsType";
+NSString *QSCollectionType = @"qs.collection";
