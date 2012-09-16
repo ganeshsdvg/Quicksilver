@@ -196,13 +196,7 @@ NSArray *recentDocumentsForBundle(NSString *bundleIdentifier) {
 		return;
 	}
 
-	// try preview icon
-	if (!theImage && [[NSUserDefaults standardUserDefaults] boolForKey:@"QSLoadImagePreviews"]) {
-		// do preview icon loading in separate thread (using NSOperationQueue)
-		theImage = [NSImage imageWithPreviewOfFileAtPath:path ofSize:QSMaxIconSize asIcon:YES];
-	}
-
-	// Just for prefpanes?
+	// Fetch prefpane icons from their bundles
 	if (!theImage && [object isPackage]) {
 		NSBundle *bundle = [NSBundle bundleWithPath:firstFile];
 		NSString *bundleImageName = nil;
@@ -215,6 +209,12 @@ NSArray *recentDocumentsForBundle(NSString *bundleIdentifier) {
 				theImage = [[[NSImage alloc] initWithContentsOfFile:bundleImagePath] autorelease];
 			}
 		}
+	}
+
+	// try preview icon
+	if (!theImage && [[NSUserDefaults standardUserDefaults] boolForKey:@"QSLoadImagePreviews"]) {
+		// do preview icon loading in separate thread (using NSOperationQueue)
+		theImage = [NSImage imageWithPreviewOfFileAtPath:path ofSize:QSMaxIconSize asIcon:YES];
 	}
 
 	// try QS's own methods to generate a preview
