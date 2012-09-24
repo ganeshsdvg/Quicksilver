@@ -4,3 +4,6 @@
 [submodule "Quicksilver/Code-External/VDKQueue"]
 	path = Quicksilver/Code-External/VDKQueue
 	url = git://github.com/bdkjones/VDKQueue.git
+[submodule "Quicksilver/Code-External/NDHotKeyEvent"]
+	path = Quicksilver/Code-External/NDHotKeyEvent
+	url = git://github.com/quicksilver/ndhotkeyevent.git

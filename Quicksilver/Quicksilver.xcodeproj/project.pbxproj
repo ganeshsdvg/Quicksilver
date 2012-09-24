@@ -91,6 +91,10 @@
 		4D00308813116376009040B7 /* QSOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D00308213116376009040B7 /* QSOutlineView.m */; };
 		4D00308913116376009040B7 /* QSTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D00308313116376009040B7 /* QSTableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D00308A13116376009040B7 /* QSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D00308413116376009040B7 /* QSTableView.m */; };
+		4D4B284A16109250002B0ADB /* NDHotKeyEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D4B284616109250002B0ADB /* NDHotKeyEvent.h */; };
+		4D4B284B16109250002B0ADB /* NDHotKeyEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B284716109250002B0ADB /* NDHotKeyEvent.m */; };
+		4D4B284C16109250002B0ADB /* NDKeyboardLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D4B284816109250002B0ADB /* NDKeyboardLayout.h */; };
+		4D4B284D16109250002B0ADB /* NDKeyboardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B284916109250002B0ADB /* NDKeyboardLayout.m */; };
 		4D62E3181476919300362E9A /* QSActionsPrefPane.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D62E30E1476919300362E9A /* QSActionsPrefPane.strings */; };
 		4D62E3191476919300362E9A /* QSCatalog.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D62E3101476919300362E9A /* QSCatalog.strings */; };
 		4D62E31A1476919300362E9A /* QSHelpersPrefPane.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D62E3121476919300362E9A /* QSHelpersPrefPane.strings */; };
@@ -99,8 +103,6 @@
 		4D62E324147694D800362E9A /* QSAction.description.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D62E326147694D800362E9A /* QSAction.description.plist */; };
 		4D62E32A1476A6BF00362E9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D62E3281476A6BF00362E9A /* Localizable.strings */; };
 		4D66BBDA1486FCF400351C42 /* CPSPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D66BBD91486FCDE00351C42 /* CPSPrivate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4D66BBFB1487018700351C42 /* NDHotKeyEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D66BBF51487018700351C42 /* NDHotKeyEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4D66BBFC1487018700351C42 /* NDHotKeyEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D66BBF61487018700351C42 /* NDHotKeyEvent.m */; };
 		4D66BC05148701B800351C42 /* NDProgrammerUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D66BBFF148701B800351C42 /* NDProgrammerUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D66BC06148701B800351C42 /* NDProgrammerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D66BC00148701B800351C42 /* NDProgrammerUtilities.m */; };
 		4D66BC07148701B800351C42 /* NSAppleEventDescriptor+NDCoercion.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D66BC01148701B800351C42 /* NSAppleEventDescriptor+NDCoercion.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -375,8 +377,6 @@
 		CDDB44E81518C78F00800B66 /* QSCrashReporterWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDB44E61518C78F00800B66 /* QSCrashReporterWindowController.m */; };
 		CDDB44EE1518ED3800800B66 /* CrashReporterText.html in Resources */ = {isa = PBXBuildFile; fileRef = CDDB44ED1518ED3800800B66 /* CrashReporterText.html */; };
 		CDE6C624157E39AE006E66BD /* QSFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE6C623157E39AE006E66BD /* QSFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CDE8ADBB15824E3E0099CC83 /* NDKeyboardLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE8ADB915824E3E0099CC83 /* NDKeyboardLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CDE8ADBC15824E3E0099CC83 /* NDKeyboardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE8ADBA15824E3E0099CC83 /* NDKeyboardLayout.m */; };
 		D413172F15DEE5D90021479B /* LaunchAtLoginController.h in Headers */ = {isa = PBXBuildFile; fileRef = D413172C15DEE5D90021479B /* LaunchAtLoginController.h */; };
 		D413173015DEE5D90021479B /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = D413172D15DEE5D90021479B /* LaunchAtLoginController.m */; };
 		D439387E15E2C4CF008F6548 /* QSICloudDocumentSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D439387D15E2C4CF008F6548 /* QSICloudDocumentSource.m */; };
@@ -1052,6 +1052,10 @@
 		4D00308313116376009040B7 /* QSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSTableView.h; sourceTree = "<group>"; };
 		4D00308413116376009040B7 /* QSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSTableView.m; sourceTree = "<group>"; };
 		4D35B4DE143C7AB800E059A7 /* QuicksilverDMG.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = QuicksilverDMG.icns; sourceTree = "<group>"; };
+		4D4B284616109250002B0ADB /* NDHotKeyEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NDHotKeyEvent.h; path = NDHotKeyEvent/Classes/NDHotKeyEvent.h; sourceTree = "<group>"; };
+		4D4B284716109250002B0ADB /* NDHotKeyEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NDHotKeyEvent.m; path = NDHotKeyEvent/Classes/NDHotKeyEvent.m; sourceTree = "<group>"; };
+		4D4B284816109250002B0ADB /* NDKeyboardLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NDKeyboardLayout.h; path = NDHotKeyEvent/Classes/NDKeyboardLayout.h; sourceTree = "<group>"; };
+		4D4B284916109250002B0ADB /* NDKeyboardLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NDKeyboardLayout.m; path = NDHotKeyEvent/Classes/NDKeyboardLayout.m; sourceTree = "<group>"; };
 		4D4F32FC0E39EDE500668F94 /* QSEffects-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "QSEffects-Info.plist"; sourceTree = "<group>"; };
 		4D4F32FD0E39EDFD00668F94 /* QSFoundation-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "QSFoundation-Info.plist"; sourceTree = "<group>"; };
 		4D62E30F1476919300362E9A /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = en.lproj/QSActionsPrefPane.strings; sourceTree = "<group>"; };
@@ -1074,8 +1078,6 @@
 		4D66BBF01486FFF000351C42 /* NDSDKCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDSDKCompatibility.h; sourceTree = "<group>"; };
 		4D66BBF11486FFF000351C42 /* NSURL+NDCarbonUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+NDCarbonUtilities.h"; sourceTree = "<group>"; };
 		4D66BBF21486FFF000351C42 /* NSURL+NDCarbonUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+NDCarbonUtilities.m"; sourceTree = "<group>"; };
-		4D66BBF51487018700351C42 /* NDHotKeyEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDHotKeyEvent.h; sourceTree = "<group>"; };
-		4D66BBF61487018700351C42 /* NDHotKeyEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDHotKeyEvent.m; sourceTree = "<group>"; };
 		4D66BBFF148701B800351C42 /* NDProgrammerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDProgrammerUtilities.h; sourceTree = "<group>"; };
 		4D66BC00148701B800351C42 /* NDProgrammerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDProgrammerUtilities.m; sourceTree = "<group>"; };
 		4D66BC01148701B800351C42 /* NSAppleEventDescriptor+NDCoercion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAppleEventDescriptor+NDCoercion.h"; sourceTree = "<group>"; };
@@ -1413,8 +1415,6 @@
 		CDE1E660158A4D0900355A9F /* VDKQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VDKQueue.h; path = VDKQueue/VDKQueue.h; sourceTree = "<group>"; };
 		CDE1E661158A4D0900355A9F /* VDKQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = VDKQueue.m; path = VDKQueue/VDKQueue.m; sourceTree = "<group>"; };
 		CDE6C623157E39AE006E66BD /* QSFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSFoundation.h; sourceTree = "<group>"; };
-		CDE8ADB915824E3E0099CC83 /* NDKeyboardLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDKeyboardLayout.h; sourceTree = "<group>"; };
-		CDE8ADBA15824E3E0099CC83 /* NDKeyboardLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDKeyboardLayout.m; sourceTree = "<group>"; };
 		D413172C15DEE5D90021479B /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		D413172D15DEE5D90021479B /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		D439387C15E2C4CF008F6548 /* QSICloudDocumentSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSICloudDocumentSource.h; sourceTree = "<group>"; };
@@ -2064,6 +2064,17 @@
 			path = QSHotKeyPlugIn;
 			sourceTree = "<group>";
 		};
+		4D4B284516109237002B0ADB /* NDHotKeyEvent */ = {
+			isa = PBXGroup;
+			children = (
+				4D4B284616109250002B0ADB /* NDHotKeyEvent.h */,
+				4D4B284716109250002B0ADB /* NDHotKeyEvent.m */,
+				4D4B284816109250002B0ADB /* NDKeyboardLayout.h */,
+				4D4B284916109250002B0ADB /* NDKeyboardLayout.m */,
+			);
+			name = NDHotKeyEvent;
+			sourceTree = "<group>";
+		};
 		4DC3DD0B0E0BB27B009902EF /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -2379,6 +2390,7 @@
 		E103EE2406471DDE00447FE0 /* Code-External */ = {
 			isa = PBXGroup;
 			children = (
+				4D4B284516109237002B0ADB /* NDHotKeyEvent */,
 				D413172B15DEE5D90021479B /* LaunchAtLoginController */,
 				CDE1E65F158A4CFD00355A9F /* VDKQueue */,
 				4D66BBD91486FCDE00351C42 /* CPSPrivate.h */,
@@ -2901,8 +2913,6 @@
 				4D66BC0C148701E900351C42 /* NDAlias.m */,
 				4D66BC0D148701E900351C42 /* NDAlias+AliasFile.h */,
 				4D66BC0E148701E900351C42 /* NDAlias+AliasFile.m */,
-				CDE8ADB915824E3E0099CC83 /* NDKeyboardLayout.h */,
-				CDE8ADBA15824E3E0099CC83 /* NDKeyboardLayout.m */,
 				4D66BC0F148701E900351C42 /* NDResourceFork.h */,
 				4D66BC10148701E900351C42 /* NDResourceFork.m */,
 				4D66BC11148701E900351C42 /* NDResourceFork+OtherSorces.h */,
@@ -2921,8 +2931,6 @@
 				4D66BC02148701B800351C42 /* NSAppleEventDescriptor+NDCoercion.m */,
 				4D66BC03148701B800351C42 /* NSValue+NDFourCharCode.h */,
 				4D66BC04148701B800351C42 /* NSValue+NDFourCharCode.m */,
-				4D66BBF51487018700351C42 /* NDHotKeyEvent.h */,
-				4D66BBF61487018700351C42 /* NDHotKeyEvent.m */,
 				4D66BBEE1486FFEF00351C42 /* NDProcess.h */,
 				4D66BBEF1486FFEF00351C42 /* NDProcess.m */,
 				4D66BBF01486FFF000351C42 /* NDSDKCompatibility.h */,
@@ -3137,7 +3145,6 @@
 				4D66BC5A1487027E00351C42 /* NDProcess.h in Headers */,
 				4D66BC5C1487027E00351C42 /* NDSDKCompatibility.h in Headers */,
 				4D66BC5D1487027E00351C42 /* NSURL+NDCarbonUtilities.h in Headers */,
-				4D66BBFB1487018700351C42 /* NDHotKeyEvent.h in Headers */,
 				4D66BC05148701B800351C42 /* NDProgrammerUtilities.h in Headers */,
 				4D66BC07148701B800351C42 /* NSAppleEventDescriptor+NDCoercion.h in Headers */,
 				4D66BC09148701B800351C42 /* NSValue+NDFourCharCode.h in Headers */,
@@ -3159,7 +3166,8 @@
 				CD4FA6E0157A13D600E549BD /* QSHotKeyEvent.h in Headers */,
 				CDE6C624157E39AE006E66BD /* QSFoundation.h in Headers */,
 				4D66BC451487024500351C42 /* NSString+NDUtilities.h in Headers */,
-				CDE8ADBB15824E3E0099CC83 /* NDKeyboardLayout.h in Headers */,
+				4D4B284A16109250002B0ADB /* NDHotKeyEvent.h in Headers */,
+				4D4B284C16109250002B0ADB /* NDKeyboardLayout.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4240,7 +4248,6 @@
 				D4E006101523951500FDF185 /* NSMetadataQuery+Synchronous.m in Sources */,
 				4D66BC5B1487027E00351C42 /* NDProcess.m in Sources */,
 				4D66BC5E1487027E00351C42 /* NSURL+NDCarbonUtilities.m in Sources */,
-				4D66BBFC1487018700351C42 /* NDHotKeyEvent.m in Sources */,
 				4D66BC06148701B800351C42 /* NDProgrammerUtilities.m in Sources */,
 				4D66BC08148701B800351C42 /* NSAppleEventDescriptor+NDCoercion.m in Sources */,
 				4D66BC0A148701B800351C42 /* NSValue+NDFourCharCode.m in Sources */,
@@ -4259,7 +4266,8 @@
 				4D66BC441487024500351C42 /* NDScriptData.m in Sources */,
 				4D66BC461487024500351C42 /* NSString+NDUtilities.m in Sources */,
 				CD4FA6E2157A13DE00E549BD /* QSHotKeyEvent.m in Sources */,
-				CDE8ADBC15824E3E0099CC83 /* NDKeyboardLayout.m in Sources */,
+				4D4B284B16109250002B0ADB /* NDHotKeyEvent.m in Sources */,
+				4D4B284D16109250002B0ADB /* NDKeyboardLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
