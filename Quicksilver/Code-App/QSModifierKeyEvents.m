@@ -68,7 +68,7 @@ OSStatus keyPressed(EventHandlerCallRef nextHandler, EventRef theEvent, void *us
     /* TODO: Use the new 10.5-only call ? */
     //    NSEvent *event = [NSEvent eventWithEventRef:theEvent];
     NSEvent *event = [NSEvent keyEventWithType:NSFlagsChanged location:NSZeroPoint
-                                 modifierFlags:carbonModifierFlagsToCocoaModifierFlags(modifiers)
+                                 modifierFlags:NDCocoaModifierFlagsForCarbonModifierFlags(modifiers)
                                      timestamp:GetEventTime( theEvent )
                                   windowNumber:0 context:nil
                                     characters:nil charactersIgnoringModifiers:nil
